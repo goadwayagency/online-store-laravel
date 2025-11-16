@@ -11,9 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('premissions', function (Blueprint $table) {
+        Schema::create('product_images', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('product_id');
+            $table->string('image');
             $table->timestamps();
+        
+            $table->foreign('product_id')
+                  ->references('id')
+                  ->on('products')
+                  ->onDelete('cascade');
         });
     }
 
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('premissions');
+        Schema::dropIfExists('product_images');
     }
 };

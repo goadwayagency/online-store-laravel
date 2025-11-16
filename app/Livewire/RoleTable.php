@@ -2,9 +2,10 @@
 
 namespace App\Livewire;
 
-use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Rule;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
@@ -12,9 +13,9 @@ use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
-final class UserTable extends PowerGridComponent
+final class RoleTable extends PowerGridComponent
 {
-    public string $tableName = 'userTable';
+    public string $tableName = 'roleTable';
 
     public function setUp(): array
     {
@@ -31,7 +32,7 @@ final class UserTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return User::query();
+        return Role::query();
     }
 
     public function relationSearch(): array
@@ -44,19 +45,17 @@ final class UserTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('email')
             ->add('created_at');
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
-            Column::make('Name', 'name')
+            Column::make('Id', 'id')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Email', 'email')
+            Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
 
@@ -83,7 +82,7 @@ final class UserTable extends PowerGridComponent
         $this->js('alert('.$rowId.')');
     }
 
-    public function actions(User $row): array
+    public function actions(Role $row): array
     {
         return [
             Button::add('edit')
@@ -94,20 +93,13 @@ final class UserTable extends PowerGridComponent
         ];
     }
 
-    public function tableClass(): string
-    {
-        return 'bg-[#f5f5f5]';
-    }
-
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
+    // public function actionRules($row): array
+    // {
+    //    return [
+    //         // Hide button edit for ID 1
+    //         Rule::button('edit')
+    //             ->when(fn($row) => $row->id === 1)
+    //             ->hide(),
+    //     ];
+    // }
 }

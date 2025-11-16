@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller; 
 use App\Models\User;
 
-class UsersController extends Controller
+class UserController extends Controller
 
 {
     public $pageTitle = 'Users';

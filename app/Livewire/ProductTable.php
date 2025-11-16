@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\User;
+use App\Models\Product;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -12,9 +12,9 @@ use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
-final class UserTable extends PowerGridComponent
+final class ProductTable extends PowerGridComponent
 {
-    public string $tableName = 'userTable';
+    public string $tableName = 'productTable';
 
     public function setUp(): array
     {
@@ -31,7 +31,7 @@ final class UserTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return User::query();
+        return Product::query();
     }
 
     public function relationSearch(): array
@@ -43,20 +43,13 @@ final class UserTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('name')
-            ->add('email')
             ->add('created_at');
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
-            Column::make('Name', 'name')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Email', 'email')
+            Column::make('Id', 'id')
                 ->sortable()
                 ->searchable(),
 
@@ -83,7 +76,7 @@ final class UserTable extends PowerGridComponent
         $this->js('alert('.$rowId.')');
     }
 
-    public function actions(User $row): array
+    public function actions(Product $row): array
     {
         return [
             Button::add('edit')
@@ -92,11 +85,6 @@ final class UserTable extends PowerGridComponent
                 ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
                 ->dispatch('edit', ['rowId' => $row->id])
         ];
-    }
-
-    public function tableClass(): string
-    {
-        return 'bg-[#f5f5f5]';
     }
 
     /*

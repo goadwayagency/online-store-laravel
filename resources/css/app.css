@@ -160,3 +160,12 @@
             grid-template-columns: repeat(4, 1fr);
       }
 }
+
+/* Table styling */
+.table{
+    background: white;
+    color: #242424;
+}
+.leading-5{
+    color: #242424;
+}
