@@ -1,7 +1,7 @@
 <div class="z-10 hidden md:flex md:flex-shrink-0">
     {{$company = "";}}
     <!-- Desktop Sidebar -->
-    <div class="relative flex flex-col w-64 bg-[#6991d6] overflow-hidden">
+    <div class="relative flex flex-col w-64 bg-[#eef3fb] overflow-hidden">
 
         <!-- Background glows -->
         <div class="absolute top-10 -left-10 w-40 h-40 bg-gradient-to-tr from-[#c4d7ff]/40 to-transparent rounded-full blur-3xl"></div>
@@ -47,7 +47,7 @@
                                         transition-all duration-200
                         
                                         {{ $isActive 
-                                            ? 'bg-blue-100 text-gray-900' 
+                                            ? 'bg-[#c2e7ff] text-gray-900' 
                                             : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' 
                                         }}
                                     "

@@ -35,7 +35,7 @@
     </style>
 </head>
 
-<body class="font-sans antialiased bg-[#6991d6] text-gray-900 dark:text-gray-100">
+<body class="font-sans antialiased bg-[#eef3fb] text-gray-900">
 
     @if(session('success'))
     <x-flash type="success"
